@@ -1,0 +1,86 @@
+---
+name: Format Checks
+"on":
+  push:
+    branches:
+      - '**'  # Every branch
+
+jobs:
+  format-markdown:
+    name: Format Markdown
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ 3.9 ]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pip
+        run: |
+          python --version
+          python -m pip install --upgrade pip
+          curl -sSL https://install.python-poetry.org | python3 -
+      - name: Install mdformat
+        run: >
+          poetry install
+      - name: Auto-format Markdown
+        run: |
+          find ./ -iname "*.md" -exec mdformat "{}" \;
+      - name: Remove forbidden TOC entries in awesome lists
+        if: startsWith(github.event.repository.name, 'awesome-')
+        # See: https://github.com/sindresorhus/awesome-lint/blob/v0.18.0/rules/toc.js#L15-L18
+        # Also remove the title of the section containing the TOC (i.e. "Contents") to fix the following error:
+        #   ✖  26:1  ToC item "Contents" does not match corresponding heading "Meta"  remark-lint:awesome-toc
+        # TODO: contribute these fixes to mdformat-toc as configurable options.
+        run: |
+          gawk -i inplace '!/^- \[(Contents|Contributing|Footnotes)\]\(#.+\)$/{print}' ./readme.md
+      - uses: peter-evans/create-pull-request@v4.0.4
+        with:
+          assignees: ${{ github.actor }}
+          commit-message: "[autofix] Format Markdown"
+          title: "[autofix] Format Markdown"
+          body: >
+            <details><summary><code>Workflow metadata</code></summary>
+
+
+            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
+            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
+            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
+
+
+            </details>
+          labels: "📚 documentation"
+          branch: format-markdown
+          base: main
+
+  format-json:
+    name: Format JSON
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install linter
+        run: |
+          sudo npm install --global jsonlint
+      - name: Lint
+        run: |
+          find ./ -type f -name '*.json' -print -exec jsonlint --in-place "{}" \;
+      - uses: peter-evans/create-pull-request@v4.0.4
+        with:
+          assignees: ${{ github.actor }}
+          commit-message: "[autofix] Format JSON"
+          title: "[autofix] Format JSON"
+          body: >
+            <details><summary><code>Workflow metadata</code></summary>
+
+
+            > [Auto-generated on run `#${{ github.run_id }}`](${{ github.event.repository.html_url }}/actions/runs/${{
+            github.run_id }}) by `${{ github.job }}` job from [`autofix.yaml`](${{ github.event.repository.html_url
+            }}/blob/${{ github.sha }}/.github/workflows/autofix.yaml) workflow.
+
+
+            </details>
+          labels: "🤖 ci"
+          branch: format-json
