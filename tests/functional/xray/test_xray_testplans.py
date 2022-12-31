@@ -3,6 +3,7 @@ Functional Tests covering: XRay Testplans
 """
 import datetime
 import uuid
+
 import pytest
 from decouple import config
 
@@ -13,13 +14,11 @@ TEST_PROJECT_ID = config("JAXA_TEST_PROJECT_ID")
 
 
 def test__xray_testplans__create_testplan(jaxa_client):
-    """
-
-    """
+    """ """
     uniq = str(uuid.uuid4())[:8]
     response = jaxa_client.xray_gql.test_plan.create_test_plan(
         project_id=TEST_PROJECT_ID,
-        summary=f"Task: {uniq} [{str(datetime.datetime.now())}]"
+        summary=f"Task: {uniq} [{str(datetime.datetime.now())}]",
     )
     assert response.get("createTestPlan").get("testPlan").get("issueId")
     assert response.get("createTestPlan").get("testPlan").get("jira").get("key")
@@ -31,9 +30,7 @@ def test__xray_testplans__create_testplan(jaxa_client):
 
 
 def test__xray_testplans__create_test_plan_with_tests(jaxa_client):
-    """
-
-    """
+    """ """
     uniq = str(uuid.uuid4())[:8]
 
     test_ids = []
@@ -41,14 +38,14 @@ def test__xray_testplans__create_test_plan_with_tests(jaxa_client):
         response = jaxa_client.xray_gql.tests.create_generic_test(
             project_id=TEST_PROJECT_ID,
             summary=f"Test: {uniq} [{str(datetime.datetime.now())}]",
-            unstructured="test steps"
+            unstructured="test steps",
         )
         test_ids.append(response.get("createTest").get("test").get("issueId"))
 
     response = jaxa_client.xray_gql.test_plan.create_test_plan_with_tests(
         project_id=TEST_PROJECT_ID,
         summary=f"TestPlan: {uniq} [{str(datetime.datetime.now())}]",
-        test_ids=test_ids
+        test_ids=test_ids,
     )
     testplan_id = response.get("createTestPlan").get("testPlan").get("issueId")
     testplan_key = response.get("createTestPlan").get("testPlan").get("jira").get("key")

@@ -12,7 +12,6 @@ import requests
 from ._enums import HTTPMethods
 from ._exceptions import StatusCodeError
 
-
 logger = logging.getLogger(__package__)
 
 RATE_LIMIT_STATUS_CODE = 429
@@ -28,7 +27,7 @@ class Session:
         url: Optional[str] = None,
         exc: bool = False,
         rate_limit: bool = True,
-        **kwargs
+        **kwargs,
     ) -> None:
         """
         :param url:
@@ -119,7 +118,7 @@ class Session:
 
     def request(self, method: HTTPMethods, endpoint: str, raw: bool = False, **kwargs):
         """Base request method"""
-        url = "{}/{}".format(self.__base_url, endpoint)
+        url = f"{self.__base_url}/{endpoint}"
 
         self.__get_converter(kwargs.get("params", {}))
         self.__post_converter(kwargs.get("json", {}))

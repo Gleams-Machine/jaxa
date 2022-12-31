@@ -1,11 +1,13 @@
 import datetime
 import uuid
-from decouple import config
+
 from behave import *
+from decouple import config
+
 from features.steps.support import TestExecutionActions
 
 
-@when(u'we opt to create a TestExecution')
+@when("we opt to create a TestExecution")
 def step_impl(context):
     project_id = config("JAXA_TEST_PROJECT_ID")
     uniq = str(uuid.uuid4())[:8]
@@ -15,20 +17,29 @@ def step_impl(context):
         jaxa_client=context.jaxa.jaxa_client,
         project_id=project_id,
         summary=summary,
-        test_ids=[test_id]
+        test_ids=[test_id],
     )
-    testexecution_id = response.get("createTestExecution").get("testExecution").get("issueId")
-    testexecution_key = response.get("createTestExecution").get("testExecution").get("jira").get("key")
-    testexecution_summary = response.get("createTestExecution").get("testExecution").get("jira").get("summary")
+    testexecution_id = (
+        response.get("createTestExecution").get("testExecution").get("issueId")
+    )
+    testexecution_key = (
+        response.get("createTestExecution").get("testExecution").get("jira").get("key")
+    )
+    testexecution_summary = (
+        response.get("createTestExecution")
+        .get("testExecution")
+        .get("jira")
+        .get("summary")
+    )
     context.jaxa.record_testexecution(
         testexecution_id=testexecution_id,
         testexecution_key=testexecution_key,
-        summary=testexecution_summary
+        summary=testexecution_summary,
     )
-    print('debug')
+    print("debug")
 
 
-@when(u'we add a TestExecution to a TestPlan')
+@when("we add a TestExecution to a TestPlan")
 def step_impl(context):
     testexecution_id = context.jaxa.active_testexecution_id
     testplan_id = context.jaxa.active_testplan_id
@@ -37,5 +48,4 @@ def step_impl(context):
         testplan_id=testplan_id,
         test_execution_ids=[testexecution_id],
     )
-    print('debug')
-
+    print("debug")

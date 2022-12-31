@@ -1,11 +1,12 @@
-from decouple import config
-import pytest
-from jaxa import JAXAClient
 import datetime
 import uuid
 
+import pytest
+from decouple import config
 
-TEST_PROJECT_ID = config('JAXA_TEST_PROJECT_ID')
+from jaxa import JAXAClient
+
+TEST_PROJECT_ID = config("JAXA_TEST_PROJECT_ID")
 
 
 @pytest.fixture
@@ -13,7 +14,7 @@ def jaxa_client():
     return JAXAClient(
         rest_url=config("JAXA_XRAY_CLOUD_REST_URL"),
         client_id=config("JAXA_JIRA_CLIENT_ID"),
-        client_secret=config("JAXA_JIRA_CLIENT_SECRET")
+        client_secret=config("JAXA_JIRA_CLIENT_SECRET"),
     )
 
 
@@ -37,18 +38,20 @@ class XRaySeeders:
         # create a test plan
         testplan_name = f"TestPlan {uniq} [{str(datetime.datetime.now())}]"
         testplan = jirasync_client.gql.test_plan.create_test_plan(
-            project_id=test_project_id,
-            summary=testplan_name
+            project_id=test_project_id, summary=testplan_name
         )
-        testplan_id = jirasync_client.gql.test_plan.get_issueid_from_createtestplan_result(testplan)
+        testplan_id = (
+            jirasync_client.gql.test_plan.get_issueid_from_createtestplan_result(
+                testplan
+            )
+        )
 
         # create some tests and assign them to test plan
         test_ids = self._new_tests(jirasync_client, test_project_id, test_count)
 
         # assign test to testplan
         jirasync_client.gql.test_plan.assign_tests_to_testplan(
-            test_ids=test_ids,
-            testplan_id=testplan_id
+            test_ids=test_ids, testplan_id=testplan_id
         )
         return testplan_id
 
@@ -62,7 +65,9 @@ class XRaySeeders:
             test = jirasync_client.gql.tests.create_generic_test(
                 project_id=test_project_id,
                 summary=f"[{x}] Test {uniq} [{str(datetime.datetime.now())}]",
-                unstructured=""
+                unstructured="",
             )
-            test_ids.append(jirasync_client.gql.tests.get_issueid_from_createtest_result(test))
+            test_ids.append(
+                jirasync_client.gql.tests.get_issueid_from_createtest_result(test)
+            )
         return test_ids

@@ -17,18 +17,22 @@ https://docs.getxray.app/display/XRAYCLOUD/GraphQL+API
 
 """
 import datetime
-import uuid
+import json
 import logging
+import uuid
 from pathlib import Path
 from typing import Dict, List
-import json
+
 from decouple import config
+
 from jaxa import JAXAClient
 
 logging.getLogger("urllib3").setLevel(logging.WARNING)
 logging.getLogger("gql.transport.requests").setLevel(logging.WARNING)
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s: %(message)s')
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s: %(message)s"
+)
 log = logging.getLogger()
 
 LINE_LENGTH = 40
@@ -52,7 +56,7 @@ class ProcessTestExecutionData:
         self._jaxa_client = JAXAClient(
             rest_url=config("JAXA_XRAY_CLOUD_REST_URL"),
             client_id=config("JAXA_JIRA_CLIENT_ID"),
-            client_secret=config("JAXA_JIRA_CLIENT_SECRET")
+            client_secret=config("JAXA_JIRA_CLIENT_SECRET"),
         )
 
     def process(self):
@@ -68,7 +72,9 @@ class ProcessTestExecutionData:
         testexecution_ids = [r.get("testexecution_id") for r in results]
 
         testplan_id, _ = self._create_testplan_with_tests(test_ids=test_ids)
-        self._add_testexecutions_to_testplan(testplan_id=testplan_id, testexecution_ids=testexecution_ids)
+        self._add_testexecutions_to_testplan(
+            testplan_id=testplan_id, testexecution_ids=testexecution_ids
+        )
 
         end = datetime.datetime.now()
         log.info(f"Processing duration: {end - start}")
@@ -80,10 +86,14 @@ class ProcessTestExecutionData:
 
         test_id, test_key = self._get_or_create_test(testname=test_summary)
 
-        testexecution_id, testexecution_key = self._create_testexecution(test_id=test_id)
+        testexecution_id, testexecution_key = self._create_testexecution(
+            test_id=test_id
+        )
 
         testrun_id = self._create_testrun_with_status(
-            test_id=test_id, testexecution_id=testexecution_id, status=test_data.get("outcome")
+            test_id=test_id,
+            testexecution_id=testexecution_id,
+            status=test_data.get("outcome"),
         )
 
         self._update_testrun_comment(testrun_id=testrun_id)
@@ -110,10 +120,7 @@ class ProcessTestExecutionData:
             "summary": self._execution_data.get("summary"),
             "uuid": "",
         }
-        return {
-            "environment": environment_data,
-            "suite": suite_data
-        }
+        return {"environment": environment_data, "suite": suite_data}
 
     def _get_or_create_test(self, *, testname: str, testtype: str = "pyAutomated"):
         # See: https://jira.atlassian.com/browse/JRASERVER-25092
@@ -123,7 +130,7 @@ class ProcessTestExecutionData:
         try:
             log.debug("Determining if Test with summary ({testname}) exists")
             jql_testname = testname.replace("[", "\\\\[").replace("]", "\\\\]")
-            query = f'project = \"{self._project_id}\" AND testType = {testtype} AND summary ~ \"{jql_testname}\" ORDER BY created DESC'
+            query = f'project = "{self._project_id}" AND testType = {testtype} AND summary ~ "{jql_testname}" ORDER BY created DESC'
             results = self._jaxa_client.xray_gql.tests.get_tests_by_jql(jql_query=query)
             log.debug(results)
             tests = results.get("getTests").get("results")
@@ -136,13 +143,13 @@ class ProcessTestExecutionData:
             else:
                 # create a test
                 test = self._jaxa_client.xray_gql.tests.create_pyautomated_test(
-                    project_id=project_id,
-                    summary=testname,
-                    unstructured=""
+                    project_id=project_id, summary=testname, unstructured=""
                 )
                 warnings = test.get("createTest").get("warnings")
                 if warnings:
-                    raise OperationalWarnings(f"createTest generated following warnings: {warnings}")
+                    raise OperationalWarnings(
+                        f"createTest generated following warnings: {warnings}"
+                    )
                 test_id = test.get("createTest").get("test").get("issueId")
                 test_key = test.get("createTest").get("test").get("jira").get("key")
                 log.debug(f"Created new Test with ID: {test_id}")
@@ -154,73 +161,100 @@ class ProcessTestExecutionData:
 
     def _create_testexecution(self, *, test_id: str):
         # create a test execution
-        test_execution = self._jaxa_client.xray_gql.test_executions.create_test_execution(
-            project_id=self._project_id,
-            summary=f"TestExecution: {self._uniqueness}",
-            testenvs=[],
-            test_ids=[test_id]
+        test_execution = (
+            self._jaxa_client.xray_gql.test_executions.create_test_execution(
+                project_id=self._project_id,
+                summary=f"TestExecution: {self._uniqueness}",
+                testenvs=[],
+                test_ids=[test_id],
+            )
         )
         warnings = test_execution.get("createTestExecution").get("warnings")
         if warnings:
-            raise OperationalWarnings(f"createTestExecution generated following warnings: {warnings}")
+            raise OperationalWarnings(
+                f"createTestExecution generated following warnings: {warnings}"
+            )
 
-        testexecution_id = test_execution.get("createTestExecution").get("testExecution").get("issueId")
-        testexecution_key = test_execution.get("createTestExecution").get("testExecution").get("jira").get("key")
+        testexecution_id = (
+            test_execution.get("createTestExecution")
+            .get("testExecution")
+            .get("issueId")
+        )
+        testexecution_key = (
+            test_execution.get("createTestExecution")
+            .get("testExecution")
+            .get("jira")
+            .get("key")
+        )
         log.info(f"[TEST EXECUTION] id={testexecution_id} ; key={testexecution_key}")
         return testexecution_id, testexecution_key
 
-    def _create_testrun_with_status(self, *, test_id: str, testexecution_id: str, status: str):
+    def _create_testrun_with_status(
+        self, *, test_id: str, testexecution_id: str, status: str
+    ):
         # create a test run
         testrun = self._jaxa_client.xray_gql.test_runs.get_test_runs(
-            testissue_ids=[test_id],
-            testExecIssueIds=[testexecution_id]
+            testissue_ids=[test_id], testExecIssueIds=[testexecution_id]
         )
         testrun_id = testrun.get("getTestRuns").get("results")[0].get("id")
         log.info(f"[TEST RUN] id={testrun_id}")
 
         # set status
         testrun_status = self._jaxa_client.xray_gql.test_runs.update_testrun_status(
-            testrun_id=testrun_id,
-            status=status
+            testrun_id=testrun_id, status=status
         )
         op_status = testrun_status.get("updateTestRunStatus")
         if op_status != "Success":
-            raise OperationalFailure(f"updateTestRunStatus generated following status: {op_status}")
+            raise OperationalFailure(
+                f"updateTestRunStatus generated following status: {op_status}"
+            )
         log.info(f"[TEST RUN] status={op_status}")
         return testrun_id
 
     def _update_testrun_comment(self, *, testrun_id: str):
         # see: https://jira.atlassian.com/secure/WikiRendererHelpAction.jspa?section=all
-        comment = "h3. Suite Data\n\n{code:json}" + json.dumps(self._suite_data, indent=4) + "{code}\n\n"
+        comment = (
+            "h3. Suite Data\n\n{code:json}"
+            + json.dumps(self._suite_data, indent=4)
+            + "{code}\n\n"
+        )
         testrun_comment = self._jaxa_client.xray_gql.test_runs.add_testrun_comment(
-            testrun_id=testrun_id,
-            comment=comment
+            testrun_id=testrun_id, comment=comment
         )
         op_status = testrun_comment.get("updateTestRunComment")
         if op_status != "Success":
-            raise OperationalFailure(f"updateTestRunComment generated following status: {op_status}")
+            raise OperationalFailure(
+                f"updateTestRunComment generated following status: {op_status}"
+            )
 
     def _create_testplan_with_tests(self, *, test_ids):
         response = self._jaxa_client.xray_gql.test_plan.create_test_plan_with_tests(
             project_id=self._project_id,
             summary=f"TestPlan: {self._uniqueness}",
-            test_ids=test_ids
+            test_ids=test_ids,
         )
         testplan_id = response.get("createTestPlan").get("testPlan").get("issueId")
-        testplan_key = response.get("createTestPlan").get("testPlan").get("jira").get("key")
+        testplan_key = (
+            response.get("createTestPlan").get("testPlan").get("jira").get("key")
+        )
         log.info(f"[TEST PLAN] id={testplan_id} ; key={testplan_key}")
         log.info(f"[TEST PLAN] test-ids={test_ids}")
         return testplan_id, testplan_key
 
-    def _add_testexecutions_to_testplan(self, *, testplan_id: str, testexecution_ids: List):
-        response = self._jaxa_client.xray_gql.test_executions.add_testexecutions_to_testplan(
-            testplan_id=testplan_id,
-            testexecution_ids=testexecution_ids
+    def _add_testexecutions_to_testplan(
+        self, *, testplan_id: str, testexecution_ids: List
+    ):
+        response = (
+            self._jaxa_client.xray_gql.test_executions.add_testexecutions_to_testplan(
+                testplan_id=testplan_id, testexecution_ids=testexecution_ids
+            )
         )
         log.info(f"[TEST PLAN] testexecution-ids={testexecution_ids}")
         warnings = response.get("addTestExecutionsToTestPlan").get("warnings")
         if warnings:
-            raise OperationalWarnings(f"addTestExecutionsToTestPlan generated following warnings: {warnings}")
+            raise OperationalWarnings(
+                f"addTestExecutionsToTestPlan generated following warnings: {warnings}"
+            )
 
     def _prepare_testrun_timing_data(*, created: float, duration: float):
         ts_format = "%Y-%m-%dT%H:%M:%SZ"
@@ -230,13 +264,13 @@ class ProcessTestExecutionData:
 
     def _set_testrun_timing(self, *, testrun_id: str, started_on: str, finished_on):
         testrun_comment = self._jaxa_client.xray_gql.test_runs.update_testrun_timing(
-            testrun_id=testrun_id,
-            started_on=started_on,
-            finished_on=finished_on
+            testrun_id=testrun_id, started_on=started_on, finished_on=finished_on
         )
         warnings = testrun_comment.get("updateTestRun").get("warnings")
         if warnings:
-            raise OperationalWarnings(f"updateTestRun generated following warnings: {warnings}")
+            raise OperationalWarnings(
+                f"updateTestRun generated following warnings: {warnings}"
+            )
 
 
 if __name__ == "__main__":

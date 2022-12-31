@@ -2,8 +2,8 @@
 Jira XRay REST API
 """
 
-from ...api.xray import _xray_categories as XRayCategories
 from ...api.rest._session import Session
+from ...api.xray import _xray_categories as XRayCategories
 
 
 class XRayRESTAPI(Session):

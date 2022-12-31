@@ -1,11 +1,13 @@
 import datetime
 import uuid
-from decouple import config
+
 from behave import *
-from features.steps.support import TestPlanActions, TestActions
+from decouple import config
+
+from features.steps.support import TestActions, TestPlanActions
 
 
-@when('we opt to create an empty TestPlan')
+@when("we opt to create an empty TestPlan")
 def step_impl(context):
     uniq = str(uuid.uuid4())[:8]
     test_project_id = config("JAXA_TEST_PROJECT_ID")
@@ -14,24 +16,24 @@ def step_impl(context):
     response = TestPlanActions.create_test_plan(
         jaxa_client=context.jaxa.jaxa_client,
         project_id=test_project_id,
-        sumamry=summary
+        sumamry=summary,
     )
     testplan_id = response.get("createTestPlan").get("testPlan").get("issueId")
     testplan_key = response.get("createTestPlan").get("testPlan").get("jira").get("key")
     context.jaxa.record_testplan(testplan_id=testplan_id, testplan_key=testplan_key)
 
 
-@then('a TestPlan is created with no tests')
+@then("a TestPlan is created with no tests")
 def step_impl(context):
     response = TestPlanActions.get_testplan_from_id(
         jaxa_client=context.jaxa.jaxa_client,
-        testplan_id=context.jaxa.active_testplan_id
+        testplan_id=context.jaxa.active_testplan_id,
     )
     test_ids = response.get("getTestPlan", {}).get("tests", {}).get("results")
     assert test_ids == []
 
 
-@when(u'we opt to create a TestPlan with tests')
+@when("we opt to create a TestPlan with tests")
 def step_impl(context):
     uniq = str(uuid.uuid4())[:8]
     test_project_id = config("JAXA_TEST_PROJECT_ID")
@@ -48,7 +50,7 @@ def step_impl(context):
             Given a test iis described using the Gherkin language
             When that test is read
             Then it is supposed to be more readable!
-                    """
+                    """,
             )
         elif test_type.lower() == "manual":
             response = TestActions.create_manual_test(
@@ -58,21 +60,21 @@ def step_impl(context):
                 steps=[
                     {
                         "action": "Create first example step",
-                        "result": "First step was created"
+                        "result": "First step was created",
                     },
                     {
                         "action": "Create second example step with data",
                         "data": "Data for the step",
-                        "result": "Second step was created with data"
-                    }
-                ]
+                        "result": "Second step was created with data",
+                    },
+                ],
             )
         elif test_type.lower() == "generic":
             response = TestActions.create_generic_test(
                 jaxa_client=context.jaxa.jaxa_client,
                 project_id=test_project_id,
                 summary=test_summary,
-                unstructured="test steps"
+                unstructured="test steps",
             )
         else:
             raise Exception("Invalid value for test_type")
@@ -83,19 +85,24 @@ def step_impl(context):
             jaxa_client=context.jaxa.jaxa_client,
             project_id=test_project_id,
             summary=f"TestPlan: {uniq} [{str(datetime.datetime.now())}]",
-            test_ids=test_ids
+            test_ids=test_ids,
         )
         testplan_id = response.get("createTestPlan").get("testPlan").get("issueId")
-        testplan_key = response.get("createTestPlan").get("testPlan").get("jira").get("key")
+        testplan_key = (
+            response.get("createTestPlan").get("testPlan").get("jira").get("key")
+        )
         context.jaxa.record_testplan(testplan_id=testplan_id, testplan_key=testplan_key)
         context.jaxa.record_test_ids(test_ids=test_ids)
 
 
-@then(u'a TestPlan is created with the tests')
+@then("a TestPlan is created with the tests")
 def step_impl(context):
     response = TestPlanActions.get_testplan_from_id(
         jaxa_client=context.jaxa.jaxa_client,
-        testplan_id=context.jaxa.active_testplan_id
+        testplan_id=context.jaxa.active_testplan_id,
     )
-    test_ids = [t.get("issueId") for t in response.get("getTestPlan", {}).get("tests", {}).get("results")]
+    test_ids = [
+        t.get("issueId")
+        for t in response.get("getTestPlan", {}).get("tests", {}).get("results")
+    ]
     assert test_ids == list(context.jaxa.tests.keys())

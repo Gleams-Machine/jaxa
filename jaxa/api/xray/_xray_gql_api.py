@@ -3,7 +3,14 @@ Jira XRay GQL API
 """
 
 from ...api.graphql._gql_client import GQLAPIClient
-from ...api.xray._xray_categories import GQLTests, GQLTestPlan, GQLTestExecution, GQLTestRun, GQLTestSets, GQLTestStatus
+from ...api.xray._xray_categories import (
+    GQLTestExecution,
+    GQLTestPlan,
+    GQLTestRun,
+    GQLTests,
+    GQLTestSets,
+    GQLTestStatus,
+)
 
 
 class XRayGraphQLAPI(GQLAPIClient):
@@ -46,7 +53,5 @@ class XRayGraphQLAPI(GQLAPIClient):
 
     @property
     def test_statuses(self):
-        """
-
-        """
+        """ """
         return GQLTestStatus(self)

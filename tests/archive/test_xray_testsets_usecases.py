@@ -1,12 +1,11 @@
 """
 
 """
-import uuid
 import datetime
+import uuid
+
 import pytest
-
 from decouple import config
-
 
 TEST_PROJECT_ID = config("JAXA_TEST_PROJECT_ID")
 
@@ -31,17 +30,23 @@ def test__xray_testsets__create_testset_with_tests(jirasync_client):
         test = jirasync_client.gql.tests.create_generic_test(
             project_id=TEST_PROJECT_ID,
             summary=f"[{x}] Test {uniq} [{str(datetime.datetime.now())}]",
-            unstructured=""
+            unstructured="",
         )
-        test_ids.append(jirasync_client.gql.tests.get_issueid_from_createtest_result(test))
+        test_ids.append(
+            jirasync_client.gql.tests.get_issueid_from_createtest_result(test)
+        )
     else:
         # assign test to testset
         response = jirasync_client.gql.test_sets.create_testset_with_tests(
             summary=f"TestSet {uniq} [{str(datetime.datetime.now())}]",
             test_ids=test_ids,
-            project_key=TEST_PROJECT_ID
+            project_key=TEST_PROJECT_ID,
         )
-        testset_id = jirasync_client.gql.test_sets.get_testsetid_from_createtestset_result(result=response)
+        testset_id = (
+            jirasync_client.gql.test_sets.get_testsetid_from_createtestset_result(
+                result=response
+            )
+        )
 
     # get summary of test set
     response = jirasync_client.gql.test_sets.get_tests_in_testset(testset_id=testset_id)
@@ -68,20 +73,30 @@ def test__xray_testsets__add_tests_to_testset(jirasync_client):
         test = jirasync_client.gql.tests.create_generic_test(
             project_id=TEST_PROJECT_ID,
             summary=f"[{x}] Test {uniq} [{str(datetime.datetime.now())}]",
-            unstructured=""
+            unstructured="",
         )
-        test_ids.append(jirasync_client.gql.tests.get_issueid_from_createtest_result(result=test))
+        test_ids.append(
+            jirasync_client.gql.tests.get_issueid_from_createtest_result(result=test)
+        )
     else:
         # assign test to testset
         response = jirasync_client.gql.test_sets.create_testset_with_tests(
             summary=f"TestSet {uniq} [{str(datetime.datetime.now())}]",
             test_ids=test_ids,
-            project_key=TEST_PROJECT_ID
+            project_key=TEST_PROJECT_ID,
         )
-        testset_id = jirasync_client.gql.test_sets.get_testsetid_from_createtestset_result(result=response)
+        testset_id = (
+            jirasync_client.gql.test_sets.get_testsetid_from_createtestset_result(
+                result=response
+            )
+        )
 
     response = jirasync_client.gql.test_sets.get_tests_in_testset(testset_id=testset_id)
-    tests_to_check = jirasync_client.gql.test_sets.get_test_issue_ids_from_gettestset_result(result=response)
+    tests_to_check = (
+        jirasync_client.gql.test_sets.get_test_issue_ids_from_gettestset_result(
+            result=response
+        )
+    )
     assert tests_to_check == test_ids
 
     added_tests = []
@@ -89,16 +104,22 @@ def test__xray_testsets__add_tests_to_testset(jirasync_client):
         test = jirasync_client.gql.tests.create_generic_test(
             project_id="QD",
             summary=f"[{x}] Test {uniq} [{str(datetime.datetime.now())}]",
-            unstructured=""
+            unstructured="",
         )
-        added_tests.append(jirasync_client.gql.tests.get_issueid_from_createtest_result(result=test))
+        added_tests.append(
+            jirasync_client.gql.tests.get_issueid_from_createtest_result(result=test)
+        )
 
     # now add some new Tests
     jirasync_client.gql.test_sets.add_tests_to_testset(
         testset_id=testset_id, test_ids=added_tests
     )
     response = jirasync_client.gql.test_sets.get_tests_in_testset(testset_id=testset_id)
-    tests_to_check = jirasync_client.gql.test_sets.get_test_issue_ids_from_gettestset_result(result=response)
+    tests_to_check = (
+        jirasync_client.gql.test_sets.get_test_issue_ids_from_gettestset_result(
+            result=response
+        )
+    )
     for added_test in added_tests:
         assert added_test in tests_to_check
 
@@ -122,20 +143,30 @@ def test__xray_testsets__remove_tests_from_testset(jirasync_client):
         test = jirasync_client.gql.tests.create_generic_test(
             project_id=TEST_PROJECT_ID,
             summary=f"[{x}] Test {uniq} [{str(datetime.datetime.now())}]",
-            unstructured=""
+            unstructured="",
         )
-        test_ids.append(jirasync_client.gql.tests.get_issueid_from_createtest_result(result=test))
+        test_ids.append(
+            jirasync_client.gql.tests.get_issueid_from_createtest_result(result=test)
+        )
     else:
         # assign test to testset
         response = jirasync_client.gql.test_sets.create_testset_with_tests(
             summary=f"TestSet {uniq} [{str(datetime.datetime.now())}]",
             test_ids=test_ids,
-            project_key=TEST_PROJECT_ID
+            project_key=TEST_PROJECT_ID,
         )
-        testset_id = jirasync_client.gql.test_sets.get_testsetid_from_createtestset_result(result=response)
+        testset_id = (
+            jirasync_client.gql.test_sets.get_testsetid_from_createtestset_result(
+                result=response
+            )
+        )
 
     response = jirasync_client.gql.test_sets.get_tests_in_testset(testset_id=testset_id)
-    tests_to_check = jirasync_client.gql.test_sets.get_test_issue_ids_from_gettestset_result(result=response)
+    tests_to_check = (
+        jirasync_client.gql.test_sets.get_test_issue_ids_from_gettestset_result(
+            result=response
+        )
+    )
     assert tests_to_check == test_ids
 
     removed_tests = test_ids[::2]
@@ -143,7 +174,9 @@ def test__xray_testsets__remove_tests_from_testset(jirasync_client):
         testset_id=testset_id, test_ids=removed_tests
     )
     response = jirasync_client.gql.test_sets.get_tests_in_testset(testset_id=testset_id)
-    tests_to_check = [test.get("issueId", "") for test in
-                      response.get("getTestSet", {}).get("tests", {}).get("results", [])]
+    tests_to_check = [
+        test.get("issueId", "")
+        for test in response.get("getTestSet", {}).get("tests", {}).get("results", [])
+    ]
     for removed_test in removed_tests:
         assert removed_test not in tests_to_check

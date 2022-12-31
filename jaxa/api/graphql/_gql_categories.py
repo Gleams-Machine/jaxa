@@ -4,7 +4,7 @@ Jira Xray API categories
 
 
 def load_query_from_file(path: str) -> str:
-    with open(path, "r") as f:
+    with open(path) as f:
         return f.read()
 
 

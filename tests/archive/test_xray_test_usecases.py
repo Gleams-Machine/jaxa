@@ -4,9 +4,9 @@ Test Use Cases
 
 import datetime
 import uuid
+
 import pytest
 from decouple import config
-
 
 TEST_PROJECT_ID = config("JAXA_TEST_PROJECT_ID")
 SAMPLE_GHERKIN = """
@@ -36,10 +36,13 @@ def test__xray_test__create_generic_tests(jirasync_client):
         test = jirasync_client.gql.tests.create_generic_test(
             project_id=TEST_PROJECT_ID,
             summary=f"[{iteration}] Test {uniq} [{str(datetime.datetime.now())}]",
-            unstructured=""
+            unstructured="",
         )
         assert test.get("createTest", {}).get("warnings") == []
-        assert test.get("createTest", {}).get("test", {}).get("testType", {}).get("name") == "Generic"
+        assert (
+            test.get("createTest", {}).get("test", {}).get("testType", {}).get("name")
+            == "Generic"
+        )
         assert test.get("createTest", {}).get("test", {}).get("issueId")
         assert test.get("createTest", {}).get("test", {}).get("jira", {}).get("key")
 
@@ -64,9 +67,12 @@ def test__xray_test__create_cucumber_tests(jirasync_client):
         test = jirasync_client.gql.tests.create_cucumber_test(
             project_id=TEST_PROJECT_ID,
             summary=f"[{iteration}] Test {uniq} [{str(datetime.datetime.now())}]",
-            gherkin=SAMPLE_GHERKIN
+            gherkin=SAMPLE_GHERKIN,
         )
         assert test.get("createTest", {}).get("warnings") == []
-        assert test.get("createTest", {}).get("test", {}).get("testType", {}).get("name") == "Cucumber"
+        assert (
+            test.get("createTest", {}).get("test", {}).get("testType", {}).get("name")
+            == "Cucumber"
+        )
         assert test.get("createTest", {}).get("test", {}).get("issueId")
         assert test.get("createTest", {}).get("test", {}).get("jira", {}).get("key")

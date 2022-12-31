@@ -8,9 +8,7 @@ pytestmark = [pytest.mark.functional]
 
 
 def test__xray__authentication(jaxa_client):
-    """
-
-    """
+    """ """
 
     response = jaxa_client.xray_rest.authenticate.get_auth_token(
         client_id=config("JAXA_JIRA_CLIENT_ID"),
