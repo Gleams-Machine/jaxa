@@ -1,0 +1,36 @@
+query getTestByJiraId ($jira_id: String!) {
+  getTests(jql: $jira_id, limit: 50) {
+    total
+    start
+    limit
+    results {
+      issueId
+      jira(fields: ["key"])
+      projectId
+      testType {
+          name
+          kind
+      },
+      steps {
+          id
+          data
+          action
+          result
+          attachments {
+              id
+              filename
+          }
+      },
+      preconditions(limit: 10) {
+        total
+        start
+        limit
+        results {
+          issueId
+          projectId
+          jira(fields: ["key"])
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,527 @@
+{
+  "created": 1661295908.161935,
+  "duration": 290.2567367553711,
+  "exitcode": 2,
+  "root": "/Users/stephen.swannell/Projects/git/GleamsMachine/cw_tests",
+  "environment": {
+    "Python": "3.9.13",
+    "Platform": "macOS-12.5.1-x86_64-i386-64bit",
+    "Packages": {
+      "pytest": "7.1.2",
+      "py": "1.11.0",
+      "pluggy": "1.0.0"
+    },
+    "Plugins": {
+      "anyio": "3.6.1",
+      "Faker": "14.1.0",
+      "xdist": "2.5.0",
+      "forked": "1.4.0",
+      "metadata": "2.0.1",
+      "pytest_check": "1.0.5",
+      "jtr": "1.0.0",
+      "html": "3.1.1",
+      "env": "0.6.2"
+    }
+  },
+  "summary": {
+    "passed": 12,
+    "xfailed": 2,
+    "failed": 1,
+    "total": 15,
+    "collected": 15
+  },
+  "tests": [
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search[Matches < Total Size]",
+      "lineno": 5,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search[Matches < Total Size]",
+        "parametrize",
+        "pytestmark",
+        "Matches < Total Size",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.20182729300000002,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.3395380370000005,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0006997120000002965,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search[Matches > Total Size]",
+      "lineno": 5,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search[Matches > Total Size]",
+        "parametrize",
+        "pytestmark",
+        "Matches > Total Size",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.002058052000000643,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.34439110799999995,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0006459149999997749,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search[Max Matches]",
+      "lineno": 5,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search[Max Matches]",
+        "parametrize",
+        "pytestmark",
+        "Max Matches",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.0064706449999993865,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.29862490100000016,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0006442040000003146,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search[Long Address]",
+      "lineno": 5,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search[Long Address]",
+        "parametrize",
+        "pytestmark",
+        "Long Address",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.004107787999999779,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.27831906800000006,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.001234959999999674,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search[Door Number]",
+      "lineno": 5,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search[Door Number]",
+        "parametrize",
+        "pytestmark",
+        "Door Number",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.005142564999999877,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.30657416800000004,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0006793750000007037,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search[No Matches]",
+      "lineno": 5,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search[No Matches]",
+        "parametrize",
+        "pytestmark",
+        "No Matches",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.0039360440000004715,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.22921568099999945,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0013556709999997807,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search_error[0 Result Size]",
+      "lineno": 43,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search_error[0 Result Size]",
+        "parametrize",
+        "pytestmark",
+        "0 Result Size",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.0016243599999992142,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.36090757100000026,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0006533979999998607,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_search_error[Empty address]",
+      "lineno": 43,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_search_error[Empty address]",
+        "parametrize",
+        "pytestmark",
+        "Empty address",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.004672949999999787,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.12318506200000012,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0009157339999994463,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_address_validation_api.py::test_cards_api_address_validation_retrieve[WA66BP]",
+      "lineno": 69,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_address_validation_retrieve[WA66BP]",
+        "parametrize",
+        "pytestmark",
+        "WA66BP",
+        "test_address_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.0038810269999993707,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.46674283699999997,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0006332039999996653,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_bank_validation_api.py::test_cards_api_bank_validation_validate[Empty Fields]",
+      "lineno": 13,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_bank_validation_validate[Empty Fields]",
+        "parametrize",
+        "pytestmark",
+        "Empty Fields",
+        "test_bank_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.004120498999999889,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 18.560196214,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.0007023479999972437,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_bank_validation_api.py::test_cards_api_bank_validation_validate[All Details]",
+      "lineno": 13,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_bank_validation_validate[All Details]",
+        "parametrize",
+        "pytestmark",
+        "All Details",
+        "test_bank_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.002239595999999011,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.4168309100000016,
+        "outcome": "passed"
+      },
+      "teardown": {
+        "duration": 0.001159310999998553,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_bank_validation_api.py::test_cards_api_bank_validation_verify[Empty Fields]",
+      "lineno": 69,
+      "outcome": "xfailed",
+      "keywords": [
+        "test_cards_api_bank_validation_verify[Empty Fields]",
+        "xfail",
+        "parametrize",
+        "pytestmark",
+        "Empty Fields",
+        "test_bank_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.005999698000000109,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 30.719724300000003,
+        "outcome": "skipped"
+      },
+      "teardown": {
+        "duration": 0.0005312059999980079,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_bank_validation_api.py::test_cards_api_bank_validation_verify[All Details]",
+      "lineno": 69,
+      "outcome": "xfailed",
+      "keywords": [
+        "test_cards_api_bank_validation_verify[All Details]",
+        "xfail",
+        "parametrize",
+        "pytestmark",
+        "All Details",
+        "test_bank_validation_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.0014211169999995832,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 45.260828436000004,
+        "outcome": "skipped",
+        "crash": {
+          "path": "/Users/stephen.swannell/Projects/git/GleamsMachine/cw_tests/.venv/lib/python3.9/site-packages/httpx/_transports/default.py",
+          "lineno": 77,
+          "message": "httpx.ReadTimeout: The read operation timed out"
+        },
+        "traceback": [
+          {
+            "path": "tests/cards/tests/test_bank_validation_api.py",
+            "lineno": 123,
+            "message": ""
+          },
+          {
+            "path": "tests/cards/common/cards_api_client.py",
+            "lineno": 153,
+            "message": "in bank_validation_api_validate"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/tenacity/__init__.py",
+            "lineno": 324,
+            "message": "in wrapped_f"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/tenacity/__init__.py",
+            "lineno": 404,
+            "message": "in __call__"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/tenacity/__init__.py",
+            "lineno": 360,
+            "message": "in iter"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/tenacity/__init__.py",
+            "lineno": 193,
+            "message": "in reraise"
+          },
+          {
+            "path": "/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py",
+            "lineno": 439,
+            "message": "in result"
+          },
+          {
+            "path": "/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py",
+            "lineno": 391,
+            "message": "in __get_result"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/tenacity/__init__.py",
+            "lineno": 407,
+            "message": "in __call__"
+          },
+          {
+            "path": "tests/cards/common/cards_api_client.py",
+            "lineno": 121,
+            "message": "in _send_request"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/httpx/_client.py",
+            "lineno": 815,
+            "message": "in request"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/httpx/_client.py",
+            "lineno": 902,
+            "message": "in send"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/httpx/_client.py",
+            "lineno": 930,
+            "message": "in _send_handling_auth"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/httpx/_client.py",
+            "lineno": 967,
+            "message": "in _send_handling_redirects"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/httpx/_client.py",
+            "lineno": 1003,
+            "message": "in _send_single_request"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/httpx/_transports/default.py",
+            "lineno": 218,
+            "message": "in handle_request"
+          },
+          {
+            "path": "/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/contextlib.py",
+            "lineno": 137,
+            "message": "in __exit__"
+          },
+          {
+            "path": ".venv/lib/python3.9/site-packages/httpx/_transports/default.py",
+            "lineno": 77,
+            "message": "ReadTimeout"
+          }
+        ],
+        "longrepr": "map = {<class 'socket.timeout'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}\n\n    @contextlib.contextmanager\n    def map_exceptions(map: Dict[Type, Type]) -> Iterator[None]:\n        try:\n>           yield\n\n.venv/lib/python3.9/site-packages/httpcore/_exceptions.py:8: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <httpcore.backends.sync.SyncStream object at 0x111b02dc0>\nmax_bytes = 65536, timeout = 5.0\n\n    def read(self, max_bytes: int, timeout: typing.Optional[float] = None) -> bytes:\n        exc_map = {socket.timeout: ReadTimeout, socket.error: ReadError}\n        with map_exceptions(exc_map):\n            self._sock.settimeout(timeout)\n>           return self._sock.recv(max_bytes)\n\n.venv/lib/python3.9/site-packages/httpcore/backends/sync.py:26: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>\nbuflen = 65536, flags = 0\n\n    def recv(self, buflen=1024, flags=0):\n        self._checkClosed()\n        if self._sslobj is not None:\n            if flags != 0:\n                raise ValueError(\n                    \"non-zero flags not allowed in calls to recv() on %s\" %\n                    self.__class__)\n>           return self.read(buflen)\n\n/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/ssl.py:1227: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>\nlen = 65536, buffer = None\n\n    def read(self, len=1024, buffer=None):\n        \"\"\"Read up to LEN bytes and return them.\n        Return zero-length string on EOF.\"\"\"\n    \n        self._checkClosed()\n        if self._sslobj is None:\n            raise ValueError(\"Read on closed or unwrapped SSL socket.\")\n        try:\n            if buffer is not None:\n                return self._sslobj.read(len, buffer)\n            else:\n>               return self._sslobj.read(len)\nE               socket.timeout: The read operation timed out\n\n/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/ssl.py:1102: timeout\n\nDuring handling of the above exception, another exception occurred:\n\n    @contextlib.contextmanager\n    def map_httpcore_exceptions() -> typing.Iterator[None]:\n        try:\n>           yield\n\n.venv/lib/python3.9/site-packages/httpx/_transports/default.py:60: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <httpx.HTTPTransport object at 0x111af47f0>\nrequest = <Request('POST', 'https://sit-cf.chetwood.co/bankvalidation-api/validate?validationtype=VER')>\n\n    def handle_request(\n        self,\n        request: Request,\n    ) -> Response:\n        assert isinstance(request.stream, SyncByteStream)\n    \n        req = httpcore.Request(\n            method=request.method,\n            url=httpcore.URL(\n                scheme=request.url.raw_scheme,\n                host=request.url.raw_host,\n                port=request.url.port,\n                target=request.url.raw_path,\n            ),\n            headers=request.headers.raw,\n            content=request.stream,\n            extensions=request.extensions,\n        )\n        with map_httpcore_exceptions():\n>           resp = self._pool.handle_request(req)\n\n.venv/lib/python3.9/site-packages/httpx/_transports/default.py:218: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <httpcore.ConnectionPool object at 0x111af4df0>\nrequest = <Request [b'POST']>\n\n    def handle_request(self, request: Request) -> Response:\n        \"\"\"\n        Send an HTTP request, and return an HTTP response.\n    \n        This is the core implementation that is called into by `.request()` or `.stream()`.\n        \"\"\"\n        scheme = request.url.scheme.decode()\n        if scheme == \"\":\n            raise UnsupportedProtocol(\n                \"Request URL is missing an 'http://' or 'https://' protocol.\"\n            )\n        if scheme not in (\"http\", \"https\"):\n            raise UnsupportedProtocol(\n                f\"Request URL has an unsupported protocol '{scheme}://'.\"\n            )\n    \n        status = RequestStatus(request)\n    \n        with self._pool_lock:\n            self._requests.append(status)\n            self._close_expired_connections()\n            self._attempt_to_acquire_connection(status)\n    \n        while True:\n            timeouts = request.extensions.get(\"timeout\", {})\n            timeout = timeouts.get(\"pool\", None)\n            try:\n                connection = status.wait_for_connection(timeout=timeout)\n            except BaseException as exc:\n                # If we timeout here, or if the task is cancelled, then make\n                # sure to remove the request from the queue before bubbling\n                # up the exception.\n                with self._pool_lock:\n                    self._requests.remove(status)\n                    raise exc\n    \n            try:\n                response = connection.handle_request(request)\n            except ConnectionNotAvailable:\n                # The ConnectionNotAvailable exception is a special case, that\n                # indicates we need to retry the request on a new connection.\n                #\n                # The most common case where this can occur is when multiple\n                # requests are queued waiting for a single connection, which\n                # might end up as an HTTP/2 connection, but which actually ends\n                # up as HTTP/1.1.\n                with self._pool_lock:\n                    # Maintain our position in the request queue, but reset the\n                    # status so that the request becomes queued again.\n                    status.unset_connection()\n                    self._attempt_to_acquire_connection(status)\n            except BaseException as exc:\n                self.response_closed(status)\n>               raise exc\n\n.venv/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py:253: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <httpcore.ConnectionPool object at 0x111af4df0>\nrequest = <Request [b'POST']>\n\n    def handle_request(self, request: Request) -> Response:\n        \"\"\"\n        Send an HTTP request, and return an HTTP response.\n    \n        This is the core implementation that is called into by `.request()` or `.stream()`.\n        \"\"\"\n        scheme = request.url.scheme.decode()\n        if scheme == \"\":\n            raise UnsupportedProtocol(\n                \"Request URL is missing an 'http://' or 'https://' protocol.\"\n            )\n        if scheme not in (\"http\", \"https\"):\n            raise UnsupportedProtocol(\n                f\"Request URL has an unsupported protocol '{scheme}://'.\"\n            )\n    \n        status = RequestStatus(request)\n    \n        with self._pool_lock:\n            self._requests.append(status)\n            self._close_expired_connections()\n            self._attempt_to_acquire_connection(status)\n    \n        while True:\n            timeouts = request.extensions.get(\"timeout\", {})\n            timeout = timeouts.get(\"pool\", None)\n            try:\n                connection = status.wait_for_connection(timeout=timeout)\n            except BaseException as exc:\n                # If we timeout here, or if the task is cancelled, then make\n                # sure to remove the request from the queue before bubbling\n                # up the exception.\n                with self._pool_lock:\n                    self._requests.remove(status)\n                    raise exc\n    \n            try:\n>               response = connection.handle_request(request)\n\n.venv/lib/python3.9/site-packages/httpcore/_sync/connection_pool.py:237: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <HTTPConnection ['https://sit-cf.chetwood.co:443', HTTP/1.1, CLOSED, Request Count: 1]>\nrequest = <Request [b'POST']>\n\n    def handle_request(self, request: Request) -> Response:\n        if not self.can_handle_request(request.url.origin):\n            raise RuntimeError(\n                f\"Attempted to send request to {request.url.origin} on connection to {self._origin}\"\n            )\n    \n        with self._request_lock:\n            if self._connection is None:\n                try:\n                    stream = self._connect(request)\n    \n                    ssl_object = stream.get_extra_info(\"ssl_object\")\n                    http2_negotiated = (\n                        ssl_object is not None\n                        and ssl_object.selected_alpn_protocol() == \"h2\"\n                    )\n                    if http2_negotiated or (self._http2 and not self._http1):\n                        from .http2 import HTTP2Connection\n    \n                        self._connection = HTTP2Connection(\n                            origin=self._origin,\n                            stream=stream,\n                            keepalive_expiry=self._keepalive_expiry,\n                        )\n                    else:\n                        self._connection = HTTP11Connection(\n                            origin=self._origin,\n                            stream=stream,\n                            keepalive_expiry=self._keepalive_expiry,\n                        )\n                except Exception as exc:\n                    self._connect_failed = True\n                    raise exc\n            elif not self._connection.is_available():\n                raise ConnectionNotAvailable()\n    \n>       return self._connection.handle_request(request)\n\n.venv/lib/python3.9/site-packages/httpcore/_sync/connection.py:90: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <HTTP11Connection ['https://sit-cf.chetwood.co:443', CLOSED, Request Count: 1]>\nrequest = <Request [b'POST']>\n\n    def handle_request(self, request: Request) -> Response:\n        if not self.can_handle_request(request.url.origin):\n            raise RuntimeError(\n                f\"Attempted to send request to {request.url.origin} on connection \"\n                f\"to {self._origin}\"\n            )\n    \n        with self._state_lock:\n            if self._state in (HTTPConnectionState.NEW, HTTPConnectionState.IDLE):\n                self._request_count += 1\n                self._state = HTTPConnectionState.ACTIVE\n                self._expire_at = None\n            else:\n                raise ConnectionNotAvailable()\n    \n        try:\n            kwargs = {\"request\": request}\n            with Trace(\"http11.send_request_headers\", request, kwargs) as trace:\n                self._send_request_headers(**kwargs)\n            with Trace(\"http11.send_request_body\", request, kwargs) as trace:\n                self._send_request_body(**kwargs)\n            with Trace(\n                \"http11.receive_response_headers\", request, kwargs\n            ) as trace:\n                (\n                    http_version,\n                    status,\n                    reason_phrase,\n                    headers,\n                ) = self._receive_response_headers(**kwargs)\n                trace.return_value = (\n                    http_version,\n                    status,\n                    reason_phrase,\n                    headers,\n                )\n    \n            return Response(\n                status=status,\n                headers=headers,\n                content=HTTP11ConnectionByteStream(self, request),\n                extensions={\n                    \"http_version\": http_version,\n                    \"reason_phrase\": reason_phrase,\n                    \"network_stream\": self._network_stream,\n                },\n            )\n        except BaseException as exc:\n            with Trace(\"http11.response_closed\", request) as trace:\n                self._response_closed()\n>           raise exc\n\n.venv/lib/python3.9/site-packages/httpcore/_sync/http11.py:105: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <HTTP11Connection ['https://sit-cf.chetwood.co:443', CLOSED, Request Count: 1]>\nrequest = <Request [b'POST']>\n\n    def handle_request(self, request: Request) -> Response:\n        if not self.can_handle_request(request.url.origin):\n            raise RuntimeError(\n                f\"Attempted to send request to {request.url.origin} on connection \"\n                f\"to {self._origin}\"\n            )\n    \n        with self._state_lock:\n            if self._state in (HTTPConnectionState.NEW, HTTPConnectionState.IDLE):\n                self._request_count += 1\n                self._state = HTTPConnectionState.ACTIVE\n                self._expire_at = None\n            else:\n                raise ConnectionNotAvailable()\n    \n        try:\n            kwargs = {\"request\": request}\n            with Trace(\"http11.send_request_headers\", request, kwargs) as trace:\n                self._send_request_headers(**kwargs)\n            with Trace(\"http11.send_request_body\", request, kwargs) as trace:\n                self._send_request_body(**kwargs)\n            with Trace(\n                \"http11.receive_response_headers\", request, kwargs\n            ) as trace:\n                (\n                    http_version,\n                    status,\n                    reason_phrase,\n                    headers,\n>               ) = self._receive_response_headers(**kwargs)\n\n.venv/lib/python3.9/site-packages/httpcore/_sync/http11.py:84: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <HTTP11Connection ['https://sit-cf.chetwood.co:443', CLOSED, Request Count: 1]>\nrequest = <Request [b'POST']>\n\n    def _receive_response_headers(\n        self, request: Request\n    ) -> Tuple[bytes, int, bytes, List[Tuple[bytes, bytes]]]:\n        timeouts = request.extensions.get(\"timeout\", {})\n        timeout = timeouts.get(\"read\", None)\n    \n        while True:\n>           event = self._receive_event(timeout=timeout)\n\n.venv/lib/python3.9/site-packages/httpcore/_sync/http11.py:148: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <HTTP11Connection ['https://sit-cf.chetwood.co:443', CLOSED, Request Count: 1]>\ntimeout = 5.0\n\n    def _receive_event(self, timeout: Optional[float] = None) -> H11Event:\n        while True:\n            with map_exceptions({h11.RemoteProtocolError: RemoteProtocolError}):\n                event = self._h11_state.next_event()\n    \n            if event is h11.NEED_DATA:\n>               data = self._network_stream.read(\n                    self.READ_NUM_BYTES, timeout=timeout\n                )\n\n.venv/lib/python3.9/site-packages/httpcore/_sync/http11.py:177: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <httpcore.backends.sync.SyncStream object at 0x111b02dc0>\nmax_bytes = 65536, timeout = 5.0\n\n    def read(self, max_bytes: int, timeout: typing.Optional[float] = None) -> bytes:\n        exc_map = {socket.timeout: ReadTimeout, socket.error: ReadError}\n        with map_exceptions(exc_map):\n            self._sock.settimeout(timeout)\n>           return self._sock.recv(max_bytes)\n\n.venv/lib/python3.9/site-packages/httpcore/backends/sync.py:26: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <contextlib._GeneratorContextManager object at 0x111b02b80>\ntyp = <class 'socket.timeout'>, value = timeout('The read operation timed out')\ntraceback = <traceback object at 0x111e318c0>\n\n    def __exit__(self, typ, value, traceback):\n        if typ is None:\n            try:\n                next(self.gen)\n            except StopIteration:\n                return False\n            else:\n                raise RuntimeError(\"generator didn't stop\")\n        else:\n            if value is None:\n                # Need to force instantiation so we can reliably\n                # tell if we get the same exception back\n                value = typ()\n            try:\n>               self.gen.throw(typ, value, traceback)\n\n/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/contextlib.py:137: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nmap = {<class 'socket.timeout'>: <class 'httpcore.ReadTimeout'>, <class 'OSError'>: <class 'httpcore.ReadError'>}\n\n    @contextlib.contextmanager\n    def map_exceptions(map: Dict[Type, Type]) -> Iterator[None]:\n        try:\n            yield\n        except Exception as exc:  # noqa: PIE786\n            for from_exc, to_exc in map.items():\n                if isinstance(exc, from_exc):\n>                   raise to_exc(exc)\nE                   httpcore.ReadTimeout: The read operation timed out\n\n.venv/lib/python3.9/site-packages/httpcore/_exceptions.py:12: ReadTimeout\n\nThe above exception was the direct cause of the following exception:\n\nrequest_data = {'account_number': '00003036', 'date_of_birth': '1972-01-13', 'first_name': 'Ashley', 'house_name_or_number': '1', ...}\nresponse_data = {'bankAddress': '070116 Address 1, 070116 Address 2, 070116 Address 3, 070116 Town, 070116 County', 'bankDetails': 'GB40BRNU07011600003036', 'bankName': '070116 Short Name', 'bankPostCode': '6506 6606', ...}\n\n    @pytest.mark.parametrize(\n        \"request_data, response_data\",\n        [\n            pytest.param(\n                dict(\n                    sort_code=\"070116\",\n                    account_number=\"00006444\",\n                    first_name=\"string\",\n                    last_name=\"string\",\n                    date_of_birth=\"1984-06-01\",\n                    house_name_or_number=\"string\",\n                    street=\"string\",\n                    post_code=\"string\",\n                ),\n                dict(\n                    statusMessage=\"\",\n                    bankDetails=\"GB77BRNU07011600006444\",\n                    bankName=\"070116 Short Name\",\n                    bankAddress=\"070116 Address 1, 070116 Address 2, 070116 Address 3, 070116 Town, 070116 County\",\n                    bankPostCode=\"6506 6606\"\n                ),\n                id=\"Empty Fields\"\n            ),\n            pytest.param(\n                dict(\n                    sort_code=\"070116\",\n                    account_number=\"00003036\",\n                    first_name=\"Ashley\",\n                    last_name=\"Marma\",\n                    date_of_birth=\"1972-01-13\",\n                    house_name_or_number=\"1\",\n                    street=\"Acacia Avenue\",\n                    post_code=\"NE96EH\",\n                ),\n                dict(\n                    statusMessage=\"\",\n                    bankDetails=\"GB40BRNU07011600003036\",\n                    bankName=\"070116 Short Name\",\n                    bankAddress=\"070116 Address 1, 070116 Address 2, 070116 Address 3, 070116 Town, 070116 County\",\n                    bankPostCode=\"6506 6606\"\n                ),\n                id=\"All Details\"\n            ),\n        ]\n    )\n    @pytest.mark.xfail\n    def test_cards_api_bank_validation_verify(request_data, response_data):\n        request_body = render_template(\n            template_file=str(\"validate.jinja\"),\n            template_dir=BANK_VALIDATION_TEMPLATE_DIR,\n            data=request_data,\n        )\n    \n>       response = CardsApiClient().bank_validation_api_validate(request_body=request_body, validation_type=\"VER\")\n\ntests/cards/tests/test_bank_validation_api.py:123: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \ntests/cards/common/cards_api_client.py:153: in bank_validation_api_validate\n    return self._send_request(url=url, method=\"post\", json=request_body, response_json=response_json, **kwargs)\n.venv/lib/python3.9/site-packages/tenacity/__init__.py:324: in wrapped_f\n    return self(f, *args, **kw)\n.venv/lib/python3.9/site-packages/tenacity/__init__.py:404: in __call__\n    do = self.iter(retry_state=retry_state)\n.venv/lib/python3.9/site-packages/tenacity/__init__.py:360: in iter\n    raise retry_exc.reraise()\n.venv/lib/python3.9/site-packages/tenacity/__init__.py:193: in reraise\n    raise self.last_attempt.result()\n/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py:439: in result\n    return self.__get_result()\n/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/concurrent/futures/_base.py:391: in __get_result\n    raise self._exception\n.venv/lib/python3.9/site-packages/tenacity/__init__.py:407: in __call__\n    result = fn(*args, **kwargs)\ntests/cards/common/cards_api_client.py:121: in _send_request\n    response = self._client.request(url=url, method=method, **kwargs)\n.venv/lib/python3.9/site-packages/httpx/_client.py:815: in request\n    return self.send(request, auth=auth, follow_redirects=follow_redirects)\n.venv/lib/python3.9/site-packages/httpx/_client.py:902: in send\n    response = self._send_handling_auth(\n.venv/lib/python3.9/site-packages/httpx/_client.py:930: in _send_handling_auth\n    response = self._send_handling_redirects(\n.venv/lib/python3.9/site-packages/httpx/_client.py:967: in _send_handling_redirects\n    response = self._send_single_request(request)\n.venv/lib/python3.9/site-packages/httpx/_client.py:1003: in _send_single_request\n    response = transport.handle_request(request)\n.venv/lib/python3.9/site-packages/httpx/_transports/default.py:218: in handle_request\n    resp = self._pool.handle_request(req)\n/usr/local/Cellar/python@3.9/3.9.13_1/Frameworks/Python.framework/Versions/3.9/lib/python3.9/contextlib.py:137: in __exit__\n    self.gen.throw(typ, value, traceback)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    @contextlib.contextmanager\n    def map_httpcore_exceptions() -> typing.Iterator[None]:\n        try:\n            yield\n        except Exception as exc:  # noqa: PIE-786\n            mapped_exc = None\n    \n            for from_exc, to_exc in HTTPCORE_EXC_MAP.items():\n                if not isinstance(exc, from_exc):\n                    continue\n                # We want to map to the most specific exception we can find.\n                # Eg if `exc` is an `httpcore.ReadTimeout`, we want to map to\n                # `httpx.ReadTimeout`, not just `httpx.TimeoutException`.\n                if mapped_exc is None or issubclass(to_exc, mapped_exc):\n                    mapped_exc = to_exc\n    \n            if mapped_exc is None:  # pragma: nocover\n                raise\n    \n            message = str(exc)\n>           raise mapped_exc(message) from exc\nE           httpx.ReadTimeout: The read operation timed out\n\n.venv/lib/python3.9/site-packages/httpx/_transports/default.py:77: ReadTimeout"
+      },
+      "teardown": {
+        "duration": 0.0006538869999985764,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_direct_debit_api.py::test_cards_api_directdebit_api_directdebit",
+      "lineno": 13,
+      "outcome": "failed",
+      "keywords": [
+        "test_cards_api_directdebit_api_directdebit",
+        "test_direct_debit_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.0012785649999926818,
+        "outcome": "passed"
+      },
+      "call": {
+        "duration": 0.44638345100000265,
+        "outcome": "failed",
+        "crash": {
+          "path": "/Users/stephen.swannell/Projects/git/GleamsMachine/cw_tests/tests/cards/tests/test_direct_debit_api.py",
+          "lineno": 16,
+          "message": "TypeError: object of type 'NoneType' has no len()"
+        },
+        "traceback": [
+          {
+            "path": "tests/cards/tests/test_direct_debit_api.py",
+            "lineno": 16,
+            "message": "TypeError"
+          }
+        ],
+        "longrepr": "def test_cards_api_directdebit_api_directdebit():\n        response = CardsApiClient().directdebit_api_directdebit_get_all()\n>       check.greater(len(response.get(\"directDebits\")), 0)\nE       TypeError: object of type 'NoneType' has no len()\n\ntests/cards/tests/test_direct_debit_api.py:16: TypeError"
+      },
+      "teardown": {
+        "duration": 0.0005751260000010916,
+        "outcome": "passed"
+      }
+    },
+    {
+      "nodeid": "tests/cards/tests/test_direct_debit_api.py::test_cards_api_directdebit_api_directdebit_creation[Simples]",
+      "lineno": 18,
+      "outcome": "passed",
+      "keywords": [
+        "test_cards_api_directdebit_api_directdebit_creation[Simples]",
+        "parametrize",
+        "pytestmark",
+        "Simples",
+        "test_direct_debit_api.py",
+        "tests/cards/tests/__init__.py",
+        "cw_tests"
+      ],
+      "setup": {
+        "duration": 0.0024357759999986683,
+        "outcome": "passed"
+      }
+    }
+  ]
+}

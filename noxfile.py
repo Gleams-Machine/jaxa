@@ -31,3 +31,21 @@ def functional_tests(session):
 def example_tests(session):
     session.install(".")
     session.run("pytest", "tests", "-m", "example", "--json-report-file=example.json")
+
+
+@session(python=PYTHON_VERSIONS)
+def all_features(session):
+    session.install(".")
+    session.run("behave")
+
+
+@session(python=PYTHON_VERSIONS)
+def features_tests(session):
+    session.install(".")
+    session.run("behave", "--tags=tests")
+
+
+@session(python=PYTHON_VERSIONS)
+def features_testplans(session):
+    session.install(".")
+    session.run("behave", "--tags=testplan")
