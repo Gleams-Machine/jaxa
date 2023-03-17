@@ -63,3 +63,12 @@ As an automated synchronisation process
 I want to execute Tests in a TestPlan
 So that I can assign the status of a Test Execution
 ```
+
+
+
+## Tags to Jira Fields
+
+it's all about the custom fields
+
+
+What about TestSets?

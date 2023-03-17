@@ -11,6 +11,7 @@ query getTestPlans ($jql_query: String!) {
                 limit
                 results {
                     issueId
+                    jira(fields: ["key", "summary"])
                     testType {
                         name
                     }

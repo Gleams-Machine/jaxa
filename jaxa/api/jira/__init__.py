@@ -1,3 +1,3 @@
-from ._jira_rest_api import JiraRESTAPI
+from .jira_rest_api import JiraRESTClient
 
-__all__ = ["JiraRESTAPI"]
+__all__ = ["JiraRESTClient"]

@@ -1,11 +1,5 @@
-from ._categories import MetaCategory
-from ._enums import HTTPMethods
-from ._exceptions import StatusCodeError
-from ._session import Session
+from .session import RESTSession
 
 __all__ = [
-    "Session",
-    "HTTPMethods",
-    "MetaCategory",
-    "StatusCodeError",
+    "RESTSession",
 ]

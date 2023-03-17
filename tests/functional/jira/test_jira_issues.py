@@ -2,15 +2,12 @@
 Functional Tests covering: Issues
 """
 import datetime
+import os
 import uuid
 
 import pytest
-from decouple import config
 
-pytestmark = [pytest.mark.functional]
-
-
-TEST_PROJECT_ID = config("JAXA_TEST_PROJECT_ID")
+pytestmark = [pytest.mark.functional, pytest.mark.jira, pytest.mark.issues]
 
 
 def test__jira_issues__create_issue(jaxa_client):
@@ -18,7 +15,7 @@ def test__jira_issues__create_issue(jaxa_client):
     uniq = str(uuid.uuid4())[:8]
     issue_body = {
         "fields": {
-            "project": {"key": TEST_PROJECT_ID},
+            "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
             "description": "Creating of an issue using project keys and issue type names using the REST API",
             "issuetype": {"name": "Story"},
@@ -36,7 +33,7 @@ def test__jira_issues__get_issue(jaxa_client):
     uniq = str(uuid.uuid4())[:8]
     issue_body = {
         "fields": {
-            "project": {"key": TEST_PROJECT_ID},
+            "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
             "description": "Creating of an issue using project keys and issue type names using the REST API",
             "issuetype": {"name": "Story"},
@@ -59,7 +56,7 @@ def test__jira_issues__update_issue(jaxa_client):
     uniq = str(uuid.uuid4())[:8]
     issue_body = {
         "fields": {
-            "project": {"key": TEST_PROJECT_ID},
+            "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
             "description": "Creating of an issue using project keys and issue type names using the REST API",
             "issuetype": {"name": "Story"},

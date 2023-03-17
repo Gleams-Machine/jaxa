@@ -7,7 +7,8 @@ Context:
 Steps needed:
 - For each test
     -- check if test exists or not based on content (but how do we get content from pytest json?)
-    -- stick with name for now.
+    -- stick with name for now. limit of 255
+
      name = nodeid
      status = outcome if != 'skipped'
 

@@ -2,15 +2,12 @@
 Functional Tests covering: XRay Test Executions
 """
 import datetime
+import os
 import uuid
 
 import pytest
-from decouple import config
 
-pytestmark = [pytest.mark.functional]
-
-
-TEST_PROJECT_ID = config("JAXA_TEST_PROJECT_ID")
+pytestmark = [pytest.mark.functional, pytest.mark.xray, pytest.mark.testexecutions]
 
 
 def test__xray_testexecutions__create_test_execution(jaxa_client):
@@ -18,7 +15,7 @@ def test__xray_testexecutions__create_test_execution(jaxa_client):
     uniq = str(uuid.uuid4())[:8]
 
     response = jaxa_client.xray_gql.tests.create_cucumber_test(
-        project_id=TEST_PROJECT_ID,
+        project_id=os.environ["JAXA_PROJECT_ID"],
         summary=f"Test: {uniq} [{str(datetime.datetime.now())}]",
         gherkin="""
     Given a test iis described using the Gherkin language
@@ -31,7 +28,7 @@ def test__xray_testexecutions__create_test_execution(jaxa_client):
     print(f"Test created: {test_id}")
 
     response = jaxa_client.xray_gql.test_executions.create_test_execution(
-        project_id=TEST_PROJECT_ID,
+        project_id=os.environ["JAXA_PROJECT_ID"],
         summary=f"Test: {uniq} [{str(datetime.datetime.now())}]",
         testenvs=["UAT"],
         test_ids=[test_id],
@@ -47,7 +44,7 @@ def test__xray_testexecutions__add_testexecutions_to_testplan(jaxa_client):
     uniq = str(uuid.uuid4())[:8]
 
     response = jaxa_client.xray_gql.test_plan.create_test_plan(
-        project_id=TEST_PROJECT_ID,
+        project_id=os.environ["JAXA_PROJECT_ID"],
         summary=f"Task: {uniq} [{str(datetime.datetime.now())}]",
     )
     testplan_id = response.get("createTestPlan").get("testPlan").get("issueId")
@@ -56,7 +53,7 @@ def test__xray_testexecutions__add_testexecutions_to_testplan(jaxa_client):
     print(f"Created TestPlan: {testplan_key}")
 
     response = jaxa_client.xray_gql.tests.create_cucumber_test(
-        project_id=TEST_PROJECT_ID,
+        project_id=os.environ["JAXA_PROJECT_ID"],
         summary=f"Test: {uniq} [{str(datetime.datetime.now())}]",
         gherkin="""
     Given a test is described using the Gherkin language
@@ -69,7 +66,7 @@ def test__xray_testexecutions__add_testexecutions_to_testplan(jaxa_client):
     print(f"Test created: {test_id}")
 
     response = jaxa_client.xray_gql.test_executions.create_test_execution(
-        project_id=TEST_PROJECT_ID,
+        project_id=os.environ["JAXA_PROJECT_ID"],
         summary=f"Test: {uniq} [{str(datetime.datetime.now())}]",
         testenvs=["UAT"],
         test_ids=[test_id],

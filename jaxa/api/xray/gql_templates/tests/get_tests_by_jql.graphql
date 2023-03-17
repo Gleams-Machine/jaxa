@@ -11,6 +11,20 @@ query getTestsByJQL ($jql_query: String!) {
           name
           kind
       }
+      steps {
+        id
+        data
+        action
+        result
+        attachments {
+          id
+          filename
+        }
+        customFields {
+          id
+          value
+        }
+      }
     }
   }
 }

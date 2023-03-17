@@ -1,20 +1,24 @@
 import datetime
+import os
 import uuid
 
 import pytest
-from decouple import config
+from dotenv import load_dotenv
 
 from jaxa import JAXAClient
 
-TEST_PROJECT_ID = config("JAXA_TEST_PROJECT_ID")
+
+@pytest.fixture()
+def load_env():
+    load_dotenv()
 
 
 @pytest.fixture
-def jaxa_client():
+def jaxa_client(load_env):
     return JAXAClient(
-        rest_url=config("JAXA_XRAY_CLOUD_REST_URL"),
-        client_id=config("JAXA_JIRA_CLIENT_ID"),
-        client_secret=config("JAXA_JIRA_CLIENT_SECRET"),
+        rest_url=os.environ["JAXA_XRAY_BASEURL"],
+        client_id=os.environ["JAXA_JIRA_CLIENT_ID"],
+        client_secret=os.environ["JAXA_JIRA_CLIENT_SECRET"],
     )
 
 

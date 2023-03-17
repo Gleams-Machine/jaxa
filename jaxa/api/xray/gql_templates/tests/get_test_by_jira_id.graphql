@@ -7,29 +7,36 @@ query getTestByJiraId ($jira_id: String!) {
       issueId
       jira(fields: ["key"])
       projectId
+      status {
+        name
+        description
+        final
+        color
+      }
       testType {
           name
           kind
-      },
+      }
       steps {
           id
           data
           action
           result
           attachments {
-              id
-              filename
+            id
+            filename
           }
-      },
-      preconditions(limit: 10) {
-        total
-        start
-        limit
-        results {
-          issueId
-          projectId
-          jira(fields: ["key"])
-        }
+          customFields {
+            id
+            value
+          }
+      }
+      unstructured
+      gherkin
+      scenarioType
+      folder {
+        name
+        path
       }
     }
   }
