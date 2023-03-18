@@ -14,6 +14,8 @@ from jaxa.api.jira import JiraRESTClient
 from jaxa.api.xray import XRayGQLClient, XRayRESTClient
 
 log = logging.getLogger("jaxa")
+logging.getLogger("urllib3").setLevel(logging.CRITICAL)
+logging.getLogger("gql.transport.requests").setLevel(logging.CRITICAL)
 
 
 class JAXAClient:
@@ -26,10 +28,10 @@ class JAXAClient:
         self._init_jira_rest_api_client()
 
         # Initialise Xray REST API
-        #self._init_xray_rest_api_client()
+        self._init_xray_rest_api_client()
 
         # Initialise Xray GraphQL API
-        #self._init_xray_graphql_api_client()
+        self._init_xray_graphql_api_client()
 
         # The issue is if token times out how to refresh and set it again
         # I think i need to check it but for now work on assumption it doesnt expire!
@@ -52,7 +54,7 @@ class JAXAClient:
         )
 
         self._transport = RequestsHTTPTransport(
-            url=os.environ["JAXA_XRAY_BASEURL"], headers=self._gql_headers
+            url=os.environ["JAXA_XRAY_BASEURL"] + "/graphql", headers=self._gql_headers
         )
         self._xray_qgl = XRayGQLClient(transport_layer=self._transport)
 
