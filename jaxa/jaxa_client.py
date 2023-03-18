@@ -1,13 +1,10 @@
 """
 Jira And Xray API Client
 """
-import asyncio
 import logging
 import os
-from typing import Dict, Optional
+from typing import Optional
 
-from gql import Client, gql
-from gql.transport.aiohttp import AIOHTTPTransport
 from gql.transport.requests import RequestsHTTPTransport
 
 from jaxa.api.jira import JiraRESTClient
@@ -34,7 +31,7 @@ class JAXAClient:
         self._init_xray_graphql_api_client()
 
         # The issue is if token times out how to refresh and set it again
-        # I think i need to check it but for now work on assumption it doesnt expire!
+        # I think i need to check it but for now work on assumption it does not expire!
 
     def _init_jira_rest_api_client(self):
         log.debug("Initialising internal Jira REST api client")

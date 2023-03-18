@@ -6,7 +6,8 @@ Context:
 - We know what tests we have executed and their corresponding execution results
 Steps needed:
 - For each test
-    -- check if test exists or not based on content (but how do we get content from pytest json?)
+    -- check if test exists or not based on content
+        (but how do we get content from pytest json?)
     -- stick with name for now. limit of 255
 
      name = nodeid
@@ -55,7 +56,7 @@ class ProcessTestExecutionData:
         self._execution_data = self._load_execution_data()
         self._suite_data = self._build_test_suite_data()
         self._jaxa_client = JAXAClient(
-            rest_url=config("JAXA_XRAY_CLOUD_REST_URL"),
+            rest_url=config("JAXA_XRAY_BASEURL"),
             client_id=config("JAXA_JIRA_CLIENT_ID"),
             client_secret=config("JAXA_JIRA_CLIENT_SECRET"),
         )
@@ -131,12 +132,16 @@ class ProcessTestExecutionData:
         try:
             log.debug("Determining if Test with summary ({testname}) exists")
             jql_testname = testname.replace("[", "\\\\[").replace("]", "\\\\]")
-            query = f'project = "{self._project_id}" AND testType = {testtype} AND summary ~ "{jql_testname}" ORDER BY created DESC'
+            query = (
+                f'project = "{self._project_id}" AND testType = {testtype} '
+                f'AND summary ~ "{jql_testname}" ORDER BY created DESC'
+            )
             results = self._jaxa_client.xray_gql.tests.get_tests_by_jql(jql_query=query)
             log.debug(results)
             tests = results.get("getTests").get("results")
             # Double check all results are for supplied testname.
-            # There have been some cases where the results do not match if char > or < is the only difference.
+            # There have been some cases where the results do not match if char >
+            # or < is the only difference.
             tests = [t for t in tests if t.get("jira").get("summary") == testname]
             if tests:
                 test_id = tests[0].get("issueId")

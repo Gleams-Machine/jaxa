@@ -17,7 +17,8 @@ def test__jira_issues__create_issue(jaxa_client):
         "fields": {
             "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
-            "description": "Creating of an issue using project keys and issue type names using the REST API",
+            "description": "Creating an issue using project keys and "
+            "issue type names using the REST API",
             "issuetype": {"name": "Story"},
         }
     }
@@ -35,7 +36,8 @@ def test__jira_issues__get_issue(jaxa_client):
         "fields": {
             "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
-            "description": "Creating of an issue using project keys and issue type names using the REST API",
+            "description": "Creating an issue using project keys and "
+            "issue type names using the REST API",
             "issuetype": {"name": "Story"},
         }
     }
@@ -58,7 +60,8 @@ def test__jira_issues__update_issue(jaxa_client):
         "fields": {
             "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
-            "description": "Creating of an issue using project keys and issue type names using the REST API",
+            "description": "Creating an issue using project keys and "
+            "issue type names using the REST API",
             "issuetype": {"name": "Story"},
         }
     }

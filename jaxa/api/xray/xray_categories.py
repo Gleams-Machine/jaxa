@@ -167,7 +167,8 @@ class GQLTests(MetaCategory):
         test_issue_id = self.get_issueid_from_createtest_result(response)
         test_jira_id = self.get_jirakeyid_from_createtest_result(response)
         log.debug(
-            f"Created Cucumber Test with XRay ID [{test_issue_id}] and Jira ID [{test_jira_id}]"
+            f"Created Cucumber Test with XRay ID [{test_issue_id}] and "
+            f"Jira ID [{test_jira_id}]"
         )
         return response
 
@@ -227,7 +228,8 @@ class GQLTests(MetaCategory):
         test_issue_id = self.get_issueid_from_createtest_result(response)
         test_jira_id = self.get_jirakeyid_from_createtest_result(response)
         log.debug(
-            f"Created pyAutomated Test with XRay ID [{test_issue_id}] and Jira ID [{test_jira_id}]"
+            f"Created pyAutomated Test with XRay ID [{test_issue_id}] and "
+            f"Jira ID [{test_jira_id}]"
         )
         return response
 

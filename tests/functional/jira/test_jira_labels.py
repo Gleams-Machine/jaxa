@@ -17,7 +17,8 @@ def test__jira_labels__add_label(jaxa_client):
         "fields": {
             "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
-            "description": "Creating of an issue using project keys and issue type names using the REST API",
+            "description": "Creating an issue using project keys and "
+            "issue type names using the REST API",
             "issuetype": {"name": "Story"},
         }
     }
@@ -38,7 +39,8 @@ def test__jira_labels__add_multiple_labels(jaxa_client):
         "fields": {
             "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
-            "description": "Creating of an issue using project keys and issue type names using the REST API",
+            "description": "Creating an issue using project keys and "
+            "issue type names using the REST API",
             "issuetype": {"name": "Story"},
         }
     }
@@ -61,7 +63,8 @@ def test__jira_labels__remove_label(jaxa_client):
         "fields": {
             "project": {"key": os.environ["JAXA_PROJECT_ID"]},
             "summary": f"Story: {uniq} [{str(datetime.datetime.now())}]",
-            "description": "Creating of an issue using project keys and issue type names using the REST API",
+            "description": "Creating an issue using project keys and "
+            "issue type names using the REST API",
             "issuetype": {"name": "Story"},
         }
     }

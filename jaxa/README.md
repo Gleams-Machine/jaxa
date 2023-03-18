@@ -6,4 +6,3 @@ Jaxa Client is a wrapper around:
 - Jira XRay GraphQL API Client
 
 With all these API's available then we can perform all the updates to Jira that we need.
-

@@ -72,7 +72,7 @@ class JiraCustomFieldList(MetaCategory):
 class JiraFields(MetaCategory):
     def get_field_id(self, *, field_name: Optional[str] = None) -> list:
         """ """
-        log.debug(f"Getting all fields")
+        log.debug("Getting all fields")
         field_list = self._session.get("rest/api/2/field")
         if field_name is None:
             return field_list
@@ -88,7 +88,7 @@ class JiraIssues(MetaCategory):
         Create an issue using POST
         :return:
         """
-        log.debug(f"Creating issue")
+        log.debug("Creating issue")
         return self._session.post("rest/api/2/issue/", json=body)
 
     def get_issue(self, *, issue_id: str, fields: Optional[list] = None) -> dict:
@@ -104,7 +104,7 @@ class JiraIssues(MetaCategory):
         Update an issue using PUT
         :return:
         """
-        log.debug(f"Updating issue")
+        log.debug("Updating issue")
         return self._session.put(f"rest/api/2/issue/{issue_id}", json=body)
 
 
