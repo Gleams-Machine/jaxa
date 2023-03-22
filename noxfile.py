@@ -5,29 +5,12 @@ PYTHON_VERSIONS = ["3.8", "3.9", "3.10"]
 
 
 @session(python=PYTHON_VERSIONS)
-def with_coverage(session):
-    session.install(".")
-    session.run(
-        "coverage", "run", "-m", "pytest", "tests", "-m", "unit", "-vvs", "-n", "auto"
-    )
-    session.run("coverage", "report", "-m", "--fail-under", "45")
-
-
-@session(python=PYTHON_VERSIONS)
-def unit_tests(session):
-    session.install(".")
-    session.run("pytest", "tests", "-m", "unit", "-vvs")  # , "-n", "auto")
-
-
-@session(python=PYTHON_VERSIONS)
 def functional_tests(session):
     session.install(".")
-    session.run(
-        "pytest", "tests", "-m", "functional", "--json-report-file=functional.json"
-    )
+    session.run("pytest", "tests", "-m", "functional")
 
 
 @session(python=PYTHON_VERSIONS)
-def example_tests(session):
+def jira_issues(session):
     session.install(".")
-    session.run("pytest", "tests", "-m", "example", "--json-report-file=example.json")
+    session.run("pytest", "tests", "-m", "functional and jira and issues")

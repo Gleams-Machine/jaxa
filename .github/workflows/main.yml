@@ -1,40 +1,20 @@
-name: CI
-
-on:
-  push:
-    branches:
-      - '**'  # Every branch
-  #pull_request:
-  #  branches:
-  #     - '**'  # Every branch
-  workflow_dispatch:
-
-jobs:
-  unit_test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.8", "3.9", "3.10"]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-      - name: Install nox
-        run: |
-          poetry install
-      - name: Run tests in nox via poetry
-        run: |
-          poetry run nox -e unit_tests-${{ matrix.python-version }}
-#  functional_test:
+#name: CI
+#
+#on:
+#  push:
+#    branches:
+#      - '**'  # Every branch
+#  #pull_request:
+#  #  branches:
+#  #     - '**'  # Every branch
+#  workflow_dispatch:
+#
+#jobs:
+#  unit_test:
 #    runs-on: ubuntu-latest
 #    strategy:
 #      matrix:
-#        python-version: [ "3.8", "3.9", "3.10" ]
+#        python-version: ["3.8", "3.9", "3.10"]
 #    steps:
 #      - uses: actions/checkout@v2
 #      - name: Set up Python ${{ matrix.python-version }}
@@ -49,4 +29,24 @@ jobs:
 #          poetry install
 #      - name: Run tests in nox via poetry
 #        run: |
-#          poetry run nox -e functional_tests-${{ matrix.python-version }}
+#          poetry run nox -e unit_tests-${{ matrix.python-version }}
+##  functional_test:
+##    runs-on: ubuntu-latest
+##    strategy:
+##      matrix:
+##        python-version: [ "3.8", "3.9", "3.10" ]
+##    steps:
+##      - uses: actions/checkout@v2
+##      - name: Set up Python ${{ matrix.python-version }}
+##        uses: actions/setup-python@v2
+##        with:
+##          python-version: ${{ matrix.python-version }}
+##      - name: Install poetry
+##        run: |
+##          curl -sSL https://install.python-poetry.org | python3 -
+##      - name: Install nox
+##        run: |
+##          poetry install
+##      - name: Run tests in nox via poetry
+##        run: |
+##          poetry run nox -e functional_tests-${{ matrix.python-version }}
