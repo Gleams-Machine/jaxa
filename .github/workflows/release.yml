@@ -20,7 +20,7 @@ jobs:
         run: |
           echo "Branch Name: ${{ github.ref_name }}"
       - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - uses: actions/setup-python@v4
       - name: Install pip
         run: |
           python -m pip install --upgrade pip
