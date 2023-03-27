@@ -49,3 +49,37 @@ def test__xray_testplans__create_test_plan_with_tests(jaxa_client):
     print(f"Created TestPlan: {testplan_key}")
     assert testplan_id
     assert testplan_key
+
+
+def test__xray_testplans__assign_tests_to_test_plan(jaxa_client):
+    """ """
+    uniq = str(uuid.uuid4())[:8]
+
+    testplan = jaxa_client.xray_gql.test_plan.create_test_plan(
+        project_id=os.environ["JAXA_PROJECT_ID"],
+        summary=f"Task: {uniq} [{str(datetime.datetime.now())}]",
+    )
+    testplan_id = testplan.get("createTestPlan").get("testPlan").get("issueId")
+    testplan_key = testplan.get("createTestPlan").get("testPlan").get("jira").get("key")
+    print(f"{testplan_key=}")
+
+    test_ids = []
+    for _ in range(3):
+        response = jaxa_client.xray_gql.tests.create_generic_test(
+            project_id=os.environ["JAXA_PROJECT_ID"],
+            summary=f"Test: {uniq} [{str(datetime.datetime.now())}]",
+            unstructured="test steps",
+        )
+        test_ids.append(response.get("createTest").get("test").get("issueId"))
+
+    print(testplan_id)
+    print(test_ids)
+
+    response = jaxa_client.xray_gql.test_plan.assign_tests_to_testplan(
+        testplan_id=testplan_id,
+        test_ids=test_ids,
+    )
+    print(f"{response=}")
+    added_tests = response.get("addTestsToTestPlan").get("addedTests")
+    print(f"{added_tests=}")
+    assert added_tests
