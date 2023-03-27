@@ -1,8 +1,10 @@
 """
 Jira Xray API categories
 """
+import base64
 import logging
 from pathlib import Path
+from typing import Dict, Union
 
 from ...api.common import MetaCategory
 
@@ -36,11 +38,11 @@ class GQLTests(MetaCategory):
     TEMPLATE_DIR = "tests"
 
     @staticmethod
-    def get_issueid_from_createtest_result(result):
+    def get_issueid_from_createtest_result(result: Dict):
         return result.get("createTest", {}).get("test", {}).get("issueId", "")
 
     @staticmethod
-    def get_jirakeyid_from_createtest_result(result):
+    def get_jirakeyid_from_createtest_result(result: Dict):
         return (
             result.get("createTest", {}).get("test", {}).get("jira", {}).get("key", "")
         )
@@ -598,6 +600,39 @@ class GQLTestRun(MetaCategory):
         log.debug(f"GQL {response=}")
         log.debug(f"Updated Test Run comment {testrun_id}")
         return response
+
+    def add_testrun_evidence(
+        self, *, testrun_id: str, filepath: str, content_type: str = "text/plain"
+    ) -> dict:
+        """
+        Perform graphQL mutation to add a file to a Test Run as evidence
+
+        Content_types:
+            - image/jpg
+            - text/plain
+        """
+        query = self._session.load_query_from_file(
+            GQL_QUERY_DIR / self.TEMPLATE_DIR / "add_testrun_evidence.graphql"
+        )
+
+        data = self._get_base64_encoded_file_contents(filepath)
+        filename = Path(filepath).name
+        variables = dict(
+            testrun_id=testrun_id,
+            data=data,
+            filename=filename,
+            content_type=content_type,
+        )
+        log.debug(f"Executing gql {query=} with {variables=}")
+        response = self._session.execute_query(query, variables=variables)
+        log.debug(f"GQL {response=}")
+        log.debug(f"Updated Test Run comment {testrun_id}")
+        return response
+
+    @staticmethod
+    def _get_base64_encoded_file_contents(filepath: Union[str, Path]):
+        with open(filepath, "rb") as file:
+            return base64.b64encode(file.read()).decode("utf-8")
 
 
 class GQLTestSets(MetaCategory):
