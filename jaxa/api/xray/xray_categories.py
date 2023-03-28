@@ -643,6 +643,37 @@ class GQLTestRun(MetaCategory):
         log.debug(f"Updated Test Run comment {testrun_id}")
         return response
 
+    def add_testrun_file_evidence(
+        self,
+        *,
+        testrun_id: str,
+        filename: str,
+        filedata: str,
+        content_type: str = "text/plain",
+    ) -> dict:
+        """
+        Perform graphQL mutation to add a file to a Test Run as evidence
+
+        Content_types:
+            - image/jpg
+            - text/plain
+        """
+        query = self._session.load_query_from_file(
+            GQL_QUERY_DIR / self.TEMPLATE_DIR / "add_testrun_evidence.graphql"
+        )
+
+        variables = dict(
+            testrun_id=testrun_id,
+            data=filedata,
+            filename=filename,
+            content_type=content_type,
+        )
+        log.debug(f"Executing gql {query=} with {variables=}")
+        response = self._session.execute_query(query, variables=variables)
+        log.debug(f"GQL {response=}")
+        log.debug(f"Updated Test Run comment {testrun_id}")
+        return response
+
     @staticmethod
     def _get_base64_encoded_file_contents(filepath: Union[str, Path]):
         with open(filepath, "rb") as file:
