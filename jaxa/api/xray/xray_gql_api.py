@@ -6,6 +6,13 @@ from typing import Optional, Union
 
 from gql import Client, gql
 from gql.transport import Transport
+from gql.transport.exceptions import TransportServerError
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
 
 from ...api.xray.xray_categories import (
     GQLTestExecution,
@@ -32,6 +39,12 @@ class XRayGQLClient:
             fetch_schema_from_transport=fetch_schema_from_transport,
         )
 
+    @retry(
+        retry=retry_if_exception_type(TransportServerError),
+        wait=wait_exponential(multiplier=1, min=4, max=10),
+        stop=stop_after_attempt(5),
+        reraise=True,
+    )
     def execute_query(self, query: str, variables: Optional[dict] = None) -> dict:
         return self.gql_cli.execute(gql(query), variable_values=variables)
 
