@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "jaxa"
-version = "1.1.0"
+version = "1.2.0"
 description = "Jira and Xray API"
 authors = ["Gleams API user <Stephen.Swannell+ghapi@gmail.com>"]
 license = "GNU GENERAL PUBLIC LICENSE"

@@ -261,6 +261,20 @@ class GQLTests(MetaCategory):
         )
         return response
 
+    def set_pyautomated_test_definition(self, issue_id: str, definition: str) -> dict:
+        """ """
+        query = self._session.load_query_from_file(
+            GQL_QUERY_DIR
+            / self.TEMPLATE_DIR
+            / "update_pyautomated_test_definition.graphql"
+        )
+        variables = dict(issue_id=issue_id, definition=definition)
+        log.debug(f"Executing gql {query=} with {variables=}")
+        response = self._session.execute_query(query, variables=variables)
+        log.debug(f"GQL {response=}")
+        log.debug(f"Set definition of pyautomated test: {issue_id}")
+        return response
+
 
 class GQLTestPlan(MetaCategory):
     """https://docs.getxray.app/display/XRAYCLOUD/Authentication+-+REST"""
